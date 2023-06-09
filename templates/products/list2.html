@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load numberformat %}
+
+{% block body %}
+<h1>Product List</h1>
+
+
+<ul>
+    {% for product in products %}
+    <h3><a href="{% url 'mainapp:detail' product.id %}">Name: {{product.name|lower|slash_end}}</a></h3>
+    <p>Content: {{product.description |check_length}}</p>
+    <h4>Total Price: {{product.total_price|add:10}}</h4>
+    <h5>Created at: {{ product.created_at|timesince }}</h5>
+    {% endfor %}
+
+
+</ul>
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+{% include "products/include.html" %}
+
+{% endblock %}
